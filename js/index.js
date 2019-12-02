@@ -105,3 +105,39 @@ contactEmail.textContent = siteContent['contact']['email'];
 // footer
 const footerContent = document.querySelector('footer p');
 footerContent.textContent = siteContent['footer']['copyright'];
+
+// ***** adding new content *****
+
+// add new links to nav
+const homeLink = document.createElement('a');
+const newsLink = document.createElement('a');
+
+homeLink.textContent = 'Home';
+newsLink.textContent = 'News';
+
+const nav = document.querySelector('nav');
+nav.prepend(homeLink);
+nav.appendChild(newsLink);
+
+// change color of nav
+// can't reuse 'navLinks' because it does not contain the new elements
+const navItems = document.querySelectorAll('nav>a');
+navItems.forEach(el => (el.style.color = 'green'));
+
+// STRETCH: use an event listener to update content on the
+// site with a button click
+// (button is in the footer)
+
+const darkModeBtn = document.createElement('button');
+darkModeBtn.textContent = 'Dark mode';
+
+darkModeBtn.addEventListener('click', darkMode);
+
+document.querySelector('footer').append(darkModeBtn);
+
+function darkMode() {
+  const body = document.querySelector('body');
+  body.style.backgroundColor = '#323539';
+  body.style.color = '#fff';
+  navItems.forEach(el => (el.style.color = '#fff'));
+}
